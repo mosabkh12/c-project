@@ -1,0 +1,113 @@
+﻿@model IEnumerable<Library.Models.Book>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    <style>
+
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('https://images4.alphacoders.com/132/1326368.png'); /* Add your image path here */
+            background-size: cover;
+            background-position: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .header {
+            background-color: #763636;
+            color: #fff;
+            padding: 20px;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+        }
+
+        h2 {
+            margin: 0;
+            font-size: 24px;
+        }
+
+        .actions {
+            margin-top: 20px;
+        }
+
+            .actions a {
+                margin-right: 10px;
+                color: #808080;
+                text-decoration: none;
+                transition: color 0.3s ease;
+            }
+
+                .actions a:hover {
+                    color: #ff0000;
+                }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #763636;
+            font-weight: bold;
+            color: #ddd;
+        }
+
+        .book-name {
+            font-size: 18px;
+        }
+
+        .book-actions {
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h2>Admin</h2>
+        </div>
+
+        <div class="actions">
+            <a href="@Url.Action("Create")">Add Book</a>
+        </div>
+
+        <table>
+            <tr>
+                <th>Book Name</th>
+                <th>Actions</th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td class="book-name">@item.name</td>
+                    <td class="book-actions">
+                        <a href="@Url.Action("Edit", new { id = item.name })">Edit</a>
+                        @*<a href="@Url.Action("Details", new { id = item.name })">Details</a>*@
+                        <a href="@Url.Action("Delete", new { id = item.name })">Delete</a>
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+</body>
+</html>

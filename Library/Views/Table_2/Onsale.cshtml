@@ -1,0 +1,267 @@
+﻿@model IEnumerable<Library.Models.Book>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>library</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url('https://images4.alphacoders.com/132/1326368.png'); /* Add the URL to your background image */
+            background-size: cover; /* Ensure the background image covers the entire screen */
+            background-repeat: no-repeat; /* Prevent the background image from repeating */
+            background-position: center; /* Center the background image */
+        }
+
+        header {
+            color: #ffffff;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 0 20px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .product {
+            background-color: #96693e;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            margin: 10px;
+            width: 200px;
+            overflow: hidden;
+            transition: transform 0.3s ease-in-out;
+        }
+
+            .product:hover {
+                transform: translateY(-5px);
+            }
+
+            .product img {
+                width: 100%;
+                height: auto;
+                border-top-left-radius: 5px;
+                border-top-right-radius: 5px;
+            }
+
+        .product-info {
+            padding: 20px;
+        }
+
+            .product-info h3 {
+                margin-top: 0;
+                font-size: 1.2em;
+                color: #333;
+            }
+
+            .product-info p {
+                margin-bottom: 0;
+                color: #000;
+            }
+
+                .product-info p.price {
+                    font-weight: bold;
+                    color: #000000;
+                }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.5); /* Background overlay */
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 20% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            border-radius: 10px;
+            width: 80%;
+            max-width: 600px;
+            animation: modal-fade 0.5s;
+        }
+
+        modal-fade {
+            from
+
+        {
+            opacity: 0;
+        }
+
+        to {
+            opacity: 1;
+        }
+
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+            .close:hover,
+            .close:focus {
+                color: black;
+                text-decoration: none;
+                cursor: pointer;
+            }
+
+        #basket-contents {
+            margin-top: 20px;
+        }
+
+        #total-price {
+            font-weight: bold;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>library</h1>
+        <!-- Add a button or link to view the basket -->
+        <!-- Add a button to show products on sale -->
+        <a href="Onsale" id="on-sale">On sale</a>
+        <!-- Add a link to view the basket -->
+        <a href="#" id="view-basket">View Basket</a>
+        <div>
+        </div>
+        <a href="login" id="login">Log In</a>
+    </header>
+   
+        @foreach (var item in Model)
+        {
+            <div class="container">
+                <div class="product">
+                    @if (item.onsale.HasValue && item.onsale > 0)
+                    {
+
+
+
+                        <img src="@item.image" alt="Book 1">
+                        <div class="product-info">
+                            <h3>@item.name</h3>
+                            <p class="category">Category: @item.category</p>
+                            <p class="age">Age limit: @item.age</p>
+
+                            <p class="price">
+                                <span style="text-decoration: line-through;">Price: $@item.price</span>
+                                <br />
+                                <span style="color: red;">Discounted Price: $@(item.price - (item.price * item.onsale / 100))</span>
+                            </p>
+
+
+                            <button class="add-to-basket" data-product-id="@item.name" data-product-name="@item.name" data-product-price="@item.price">Add to Basket</button>
+                        </div>
+
+                    }
+                </div>
+            </div>
+                }
+          
+
+            <script>
+                document.addEventListener("DOMContentLoaded", function () {
+                    const addToBasketButtons = document.querySelectorAll(".add-to-basket");
+                    const viewBasketLink = document.getElementById("view-basket");
+                    const showSaleButton = document.getElementById("show-sale");
+                    const basketModal = document.getElementById("basket-modal");
+                    const closeBasketModal = document.querySelector(".close");
+                    const payButton = document.getElementById("pay-button");
+                    const products = document.querySelectorAll(".product"); // Select all product elements
+
+                    let basket = [];
+
+                    addToBasketButtons.forEach(button => {
+                        button.addEventListener("click", function () {
+                            const productId = this.getAttribute("data-product-id");
+                            const productName = this.getAttribute("data-product-name");
+                            const productPrice = parseFloat(this.getAttribute("data-product-price"));
+
+                            const existingProductIndex = basket.findIndex(item => item.name == productId);
+                            if (existingProductIndex !== -1) {
+                                basket[existingProductIndex].quantity++;
+                                basket[existingProductIndex].totalPrice += productPrice;
+                            } else {
+                                basket.push({
+                                    id: productId,
+                                    name: productName,
+                                    price: productPrice,
+                                    quantity: 1,
+                                    totalPrice: productPrice
+                                });
+                            }
+
+                            updateBasketModal();
+                        });
+                    });
+
+                    viewBasketLink.addEventListener("click", function (event) {
+                        event.preventDefault();
+                        basketModal.style.display = "block";
+                    });
+
+                    closeBasketModal.addEventListener("click", function () {
+                        basketModal.style.display = "none";
+                    });
+
+                    showSaleButton.addEventListener("click", function () {
+                        products.forEach(product => {
+                            const priceElement = product.querySelector(".price");
+                            const isOnSale = priceElement.querySelector("span");
+                            if (!isOnSale) {
+                                product.style.display = "none";
+                            } else {
+                                product.style.display = "block";
+                            }
+                        });
+                    });
+
+                    payButton.addEventListener("click", function () {
+                        console.log("Payment button clicked. Proceed to payment process...");
+                    });
+
+                    function updateBasketModal() {
+                        const basketContents = document.getElementById("basket-contents");
+                        const totalPriceElement = document.getElementById("total-price");
+                        let totalPrice = 0;
+
+                        basketContents.innerHTML = "";
+
+                        basket.forEach(item => {
+                            totalPrice += item.totalPrice;
+
+                            const productHTML = `
+                                                    <p>${item.name} x ${item.quantity} = ${item.totalPrice}</p>
+                                                `;
+                            basketContents.innerHTML += productHTML;
+                        });
+
+                        totalPriceElement.textContent = `Total Price: $${totalPrice.toFixed(2)}`;
+                    }
+                });
+            </script>
+</body>
+</html>
+
+
+
+
+

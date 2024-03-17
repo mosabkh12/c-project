@@ -1,0 +1,165 @@
+﻿@model Library.Models.Table_2
+
+@{
+    ViewBag.Title = "Sign Up";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        /* Your CSS styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('https://images.alphacoders.com/133/1339726.png'); /* Add the path to your background image */
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+
+        .container {
+            max-width: 400px; /* Changed to match your CSS */
+            margin: 0 auto; /* Changed to center the container */
+            background-color: rgba(47, 47, 47, 0.7); /* Changed to match your CSS */
+            padding: 40px; /* Changed to match your CSS */
+            border-radius: 8px; /* Changed to match your CSS */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Changed to match your CSS */
+            text-align: center; /* Added to center content */
+        }
+
+        h2 {
+            color: #ffffff; /* Changed to white */
+            font-size: 40px; /* Changed to match your CSS */
+            margin-bottom: 30px;
+        }
+
+        label {
+            font-weight: 500; /* Changed to match your CSS */
+            color: #ffffff; /* Changed to white */
+            margin-bottom: 10px; /* Added margin bottom */
+        }
+
+        .form-control {
+            background: none; /* Changed to match your CSS */
+            border: 1px solid #ffffff; /* Changed to white */
+            padding: 15px 23px; /* Changed to match your CSS */
+            font-size: 16px; /* Changed to match your CSS */
+            border-radius: 8px; /* Changed to match your CSS */
+            color: #ffffff; /* Changed to white */
+            width: 100%; /* Added to make input full width */
+        }
+
+            .form-control:focus {
+                border-color: #0173ed; /* Changed to match your CSS */
+                outline: none;
+            }
+
+        .btn-submit {
+            background-color: #794343; /* Changed to match your CSS */
+            color: #ffffff; /* Changed to white */
+            border: none;
+            padding: 15px;
+            border-radius: 8px; /* Changed to match your CSS */
+            font-size: 16px; /* Changed to match your CSS */
+            font-weight: 500; /* Changed to match your CSS */
+            cursor: pointer;
+            width: 100%; /* Added to make button full width */
+            transition: background-color 0.3s ease; /* Added transition */
+        }
+
+            .btn-submit:hover {
+                background-color: #0173ed; /* Changed to match your CSS */
+            }
+
+        .btn-login {
+            background-color: #794343; /* Changed to match your CSS */
+            color: #ffffff; /* Changed to white */
+            border: none;
+            padding: 15px;
+            border-radius: 8px; /* Changed to match your CSS */
+            font-size: 16px; /* Changed to match your CSS */
+            font-weight: 500; /* Changed to match your CSS */
+            cursor: pointer;
+            width: 100%; /* Added to make button full width */
+            margin-top: 10px; /* Added margin top */
+            transition: background-color 0.3s ease; /* Added transition */
+        }
+
+            .btn-login:hover {
+                background-color: #495057; /* Changed to match your CSS */
+            }
+
+        .success-message {
+            color: #28a745; /* Changed to match your CSS */
+            text-align: center; /* Added to center text */
+            margin-top: 20px; /* Added margin top */
+        }
+
+        .alert-danger {
+            color: #dc3545; /* Changed to match your CSS */
+            text-align: center; /* Added to center text */
+            margin-top: 20px; /* Added margin top */
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Sign Up</h2>
+
+        @using (Html.BeginForm("AddOrEdit", "Table_2", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Username)
+                @Html.EditorFor(model => model.Username, new { @class = "form-control", required = "required", pattern = "^[a-zA-Z0-9]+$", title = "Username can only contain letters and numbers" })
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Email)
+                @Html.EditorFor(model => model.Email, new { @class = "form-control", required = "required", type = "email" })
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Password)
+                @Html.EditorFor(model => model.Password, new { @class = "form-control", required = "required", pattern = "^.{6,}$", title = "Password must be at least 6 characters long" })
+                <div id="passwordError" class="text-danger"></div> <!-- Added for password error message -->
+            </div>
+
+            <button type="submit" class="btn btn-submit">Submit</button>
+            <div class="success-message">@ViewBag.SuccessMessage</div>
+            <div class="alert-danger">@ViewBag.DuplicateMessage</div>
+
+        }
+
+        <!-- Login button -->
+        <a href="@Url.Action("Login", "Table_2")" class="btn btn-login">Login</a>
+
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script>
+        // Client-side validation for password field to check minimum length
+        document.addEventListener("DOMContentLoaded", function () {
+            var passwordField = document.getElementById("Password");
+            passwordField.addEventListener("input", function () {
+                var errorMessage = document.getElementById("passwordError");
+                if (passwordField.validity.patternMismatch) {
+                    passwordField.setCustomValidity("Password must be at least 6 characters long");
+                    errorMessage.innerText = "Password must be at least 6 characters long";
+                } else {
+                    passwordField.setCustomValidity("");
+                    errorMessage.innerText = "";
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
