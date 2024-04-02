@@ -1,0 +1,115 @@
+﻿@model Library.Models.request
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-image: url('https://static.vecteezy.com/system/resources/previews/030/759/702/large_2x/old-books-on-a-wooden-table-in-the-library-selective-focus-book-stack-with-ladder-on-sky-with-clouds-background-free-photo.jpg'); /* Add the path to your background image */
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+
+    h2 {
+        color: #ffd277;
+    }
+
+    .nav-links {
+        margin-top: 10px;
+    }
+
+        .nav-links a {
+            color: #ffd277;
+            text-decoration: none;
+            margin-right: 20px;
+            transition: color 0.3s ease;
+        }
+
+            .nav-links a:hover {
+                color: #66afe9;
+            }
+
+    .container {
+        margin-top: 50px;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    .btn-primary {
+        background-color: #808080;
+        border-color: #808080;
+    }
+
+        .btn-primary:hover {
+            background-color: #090a0a;
+            border-color: #090a0a;
+        }
+
+    .btn-secondary {
+        background-color: #090a0a;
+        border-color: #090a0a;
+    }
+
+        .btn-secondary:hover {
+            background-color: #090a0a;
+            border-color: #090a0a;
+        }
+
+    .success-message {
+        color: #28a745;
+        font-weight: bold;
+    }
+
+    .alert-danger {
+        color: #dc3545;
+        font-weight: bold;
+    }
+
+    /* Custom styles for amountreq and bookreq */
+    .control-label {
+        color: #ffd277; /* Change to the desired color */
+    }
+</style>
+
+<h2>Order New Book</h2>
+<div class="nav-links">
+    <a href="Products">Library</a>
+    </div>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.bookreq, htmlAttributes: new { @class = "control-label" })
+                        @Html.EditorFor(model => model.bookreq, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.bookreq, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.amountreq, htmlAttributes: new { @class = "control-label" })
+                        @Html.EditorFor(model => model.amountreq, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.amountreq, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary">Request</button>
+                        <div class="success-message">@ViewBag.SuccessMessage</div>
+                        <div class="alert-danger">@ViewBag.DuplicateMessage</div>
+
+                        @Html.ActionLink("Cancel", "Products", null, new { @class = "btn btn-secondary" })
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }

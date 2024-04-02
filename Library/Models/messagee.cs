@@ -14,20 +14,13 @@ namespace Library.Models
     using System.ComponentModel.DataAnnotations;
     using System.Security.Policy;
 
-    public partial class Book
+    public partial class messagee
     {
+
         [Key]
-        public string name { get; set; }
-        public decimal price { get; set; }
-        public string location { get; set; }
-        public int amount { get; set; }
-        public string category { get; set; }
-        public string mostpopular { get; set; }
-        public string date { get; set; }
-        public string age { get; set; }
-        public string image { get; set; }
-        public decimal? onsale { get; set; }
-       
+        public string bookn { get; set; }
+        public string message1 { get; set; }
+        
 
 
     }

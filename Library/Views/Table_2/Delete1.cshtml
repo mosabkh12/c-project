@@ -1,4 +1,4 @@
-﻿@model Library.Models.Book
+﻿@model Library.Models.request
 
 <!DOCTYPE html>
 <html>
@@ -69,7 +69,7 @@
 </head>
 <body>
     <div class="container">
-        <h2>Delete Book</h2>
+        <h2>Delete Request</h2>
         <h3>Are you sure you want to delete this?</h3>
         <div class="form-container">
             @*<h4>Book</h4>*@
@@ -82,7 +82,7 @@
                 @Html.AntiForgeryToken()
                 <div>
                     <input type="submit" value="Delete" class="btn" />
-                    @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-back" })
+                    @Html.ActionLink("Back to List", "reqshow", null, new { @class = "btn btn-back" })
                 </div>
             }
         </div>

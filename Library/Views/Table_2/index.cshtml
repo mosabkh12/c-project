@@ -1,36 +1,41 @@
-﻿@model IEnumerable<Library.Models.Book>
-
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title</title>
     <style>
-
-        body {
-            font-family: Arial, sans-serif;
-            background-image: url('https://images4.alphacoders.com/132/1326368.png'); /* Add your image path here */
-            background-size: cover;
-            background-position: center;
+        html, body {
+            height: 100%;
             margin: 0;
             padding: 0;
         }
 
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('https://static.vecteezy.com/system/resources/previews/024/948/487/large_2x/top-view-white-office-desk-with-computer-pen-eyeglass-notebook-and-cup-of-coffee-copy-space-mock-up-photo.jpg'); /* Add your beautiful background image here */
+            background-size: cover;
+            background-position: center;
+        }
+
         .container {
+            width: 80%; /* Adjust as needed */
             max-width: 800px;
-            margin: 20px auto;
-            background-color: #fff;
+            margin: 0 auto; /* Center the container horizontally */
+            background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white background */
             border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2); /* Soft shadow effect */
+            padding: 20px;
+            margin-top: 10%; /* Adjust as needed */
         }
 
         .header {
-            background-color: #763636;
+            background-color: #95ab85;
             color: #fff;
             padding: 20px;
             border-top-left-radius: 10px;
             border-top-right-radius: 10px;
+            text-align: center;
         }
 
         h2 {
@@ -40,17 +45,24 @@
 
         .actions {
             margin-top: 20px;
+            text-align: center;
         }
 
             .actions a {
                 margin-right: 10px;
-                color: #808080;
+                color: #3b681a;
                 text-decoration: none;
                 transition: color 0.3s ease;
+                font-weight: bold;
+                font-size: 16px;
+                padding: 8px 16px;
+                border-radius: 5px;
+                background-color: #ffffff;
             }
 
                 .actions a:hover {
-                    color: #ff0000;
+                    color: #ffffff;
+                    background-color: #95ab85;
                 }
 
         table {
@@ -66,9 +78,9 @@
         }
 
         th {
-            background-color: #763636;
+            background-color: #95ab85;
             font-weight: bold;
-            color: #ddd;
+            color: #fff;
         }
 
         .book-name {
@@ -78,6 +90,25 @@
         .book-actions {
             font-size: 16px;
         }
+
+            .book-actions a {
+                color: #57768a; /* Default color */
+                text-decoration: none;
+                transition: color 0.3s ease;
+            }
+
+                .book-actions a:hover {
+                    color: #ffffff; /* Hover color */
+                    background-color: #245474;
+                }
+
+                .book-actions a.edit {
+                    color: blue; /* Change edit link color */
+                }
+
+                .book-actions a.delete {
+                    color: red; /* Change delete link color */
+                }
     </style>
 </head>
 <body>
@@ -88,6 +119,10 @@
 
         <div class="actions">
             <a href="@Url.Action("Create")">Add Book</a>
+            <a href="values">my-values</a>
+            <a href="reqshow">Requests</a>
+            <a href="amount">Messages</a>
+            <a href="login">Exit</a>
         </div>
 
         <table>

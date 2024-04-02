@@ -1,0 +1,139 @@
+﻿@model IEnumerable<Library.Models.messagee>
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Store</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-EhRIOzZIa6XT/zAY7Hbe0Khb2mtCRN/h5/HwANxXU2uMUVxUX27ZvUUE0X3SKEIpGxDPQKUN1c0D7wJz3Rly5g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        /* Reset and General Styles */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('https://www.teahub.io/photos/full/82-828177_white-book-backgrounds-powerpoint-template.jpg'); /* Add your beautiful background image here */
+            background-size: cover;
+            background-position: center;
+            font-family: Arial, sans-serif;
+            background-color: #7f7f6e;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            max-width: 800px;
+            padding: 20px;
+            margin: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            /*overflow-x: auto;*/
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .actions {
+            text-align: right;
+            margin-bottom: 20px;
+        }
+
+            .actions a {
+                color: #007bff;
+                text-decoration: none;
+                font-size: 16px;
+            }
+
+        /* Table Styles */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            border-spacing: 0;
+            margin-top: 20px;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #f2f2f2;
+            color: #333;
+            font-weight: bold;
+            position: sticky;
+            top: 0;
+            z-index: 1;
+        }
+
+        td {
+            background-color: #fff;
+        }
+
+        .book-name {
+            font-weight: bold;
+        }
+
+        .book-actions {
+            font-size: 16px;
+        }
+
+            .book-actions a {
+                color: #dc3545;
+                text-decoration: none;
+                margin-right: 10px;
+            }
+
+                .book-actions a:hover {
+                    text-decoration: underline;
+                }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Book Store</h1>
+        <div class="actions">
+
+            <a href="index"> Admin Page</a>
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Message</th>
+                    <th>name</th>
+
+
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td class="message">@item.message1</td>
+                        <td class="book-name">@item.bookn</td>
+                        <td class="book-actions">
+
+                            <a href="@Url.Action("Deletee", new { id = item.bookn })">Delete</a>
+                        </td>
+
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

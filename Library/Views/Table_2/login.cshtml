@@ -111,13 +111,19 @@
 
             <div class="form-group">
                 @Html.LabelFor(model => model.Username)
-                @Html.EditorFor(model => model.Username, new { @class = "form-control", required = "required" })
+                @Html.TextBoxFor(model => model.Username, new { @class = "form-control", required = "required" })
             </div>
 
             <div class="form-group">
                 @Html.LabelFor(model => model.Password)
-                @Html.EditorFor(model => model.Password, new { @class = "form-control", required = "required", type = "password" })
-               
+                <div class="input-group">
+                    @Html.PasswordFor(model => model.Password, new { @class = "form-control", required = "required", type = "password", id = "passwordField" })
+                    <div class="input-group-append">
+                        <span class="input-group-text" style="cursor: pointer;" onclick="togglePasswordVisibility()">
+                            <i id="togglePasswordIcon" class="fa fa-eye"></i>
+                        </span>
+                    </div>
+                </div>
             </div>
 
             <button type="submit" class="btn btn-submit">Login</button>
@@ -130,10 +136,27 @@
 
     </div>
 
-   
+
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        function togglePasswordVisibility() {
+            var passwordField = document.getElementById("passwordField");
+            var icon = document.getElementById("togglePasswordIcon");
+
+            if (passwordField.type === "password") {
+                passwordField.type = "text";
+                icon.classList.remove("fa-eye");
+                icon.classList.add("fa-eye-slash");
+            } else {
+                passwordField.type = "password";
+                icon.classList.remove("fa-eye-slash");
+                icon.classList.add("fa-eye");
+            }
+        }
+    </script>
+
 
 </body>
 </html>

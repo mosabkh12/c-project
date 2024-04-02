@@ -35,7 +35,7 @@
             text-align: center;
             padding: 20px;
             /*background-color: #66afe9;*/
-            color: #fcc16e;
+            color: #f7d082;
             margin-bottom: 20px;
         }
 
@@ -150,7 +150,7 @@
         .buy-now {
             background-color: #000000;
             border: none;
-            color: #ffd277;
+            color: white;
             padding: 8px 20px;
             text-align: center;
             text-decoration: none;
@@ -204,7 +204,7 @@
             /* Style for the search button */
             .search-by-category button {
                 border: none;
-                background: linear-gradient(to right, rgba(76, 175, 80, 0.5), rgba(46, 139, 87, 0.5)); /* Adjust the opacity of the colors here */
+                background: linear-gradient(to right, #4caf50, #2e8b57);
                 color: #ffd277;
                 padding: 5px 5px;
                 border-radius: 5px;
@@ -213,7 +213,7 @@
             }
 
                 .search-by-category button:hover {
-                    background: linear-gradient(to right, rgba(76, 175, 80, 0.7), rgba(46, 139, 87, 0.7)); /* Adjust the opacity of the colors here */
+                    background: linear-gradient(to right, #45a049, #2d844e);
                 }
 
         .search-container5 {
@@ -411,7 +411,7 @@
 
         .pay-button {
             background-color: black;
-            color: #ffd277;
+            color: white;
             border: none;
             padding: 10px 20px;
             border-radius: 5px;
@@ -426,7 +426,7 @@
         .buy-now {
             background-color: #000000;
             border: none;
-            color: #ffd277;
+            color: white;
             padding: 10px 20px;
             text-align: center;
             text-decoration: none;
@@ -447,15 +447,6 @@
                 transform: translateY(1px);
                 box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
             }
-        #show-best-seller {
-            position: fixed;
-            top: 80px;
-            left: 20px;
-            z-index: 1001;
-            background: linear-gradient(to right, #ff4500, #ff8c00);
-            color: #ffd277;
-            /*#ffd277*/
-        }
     </style>
 </head>
 
@@ -487,14 +478,13 @@
         <button id="search-price-button" class="search-by-price-btn">
             Search
         </button>
-
     </div>
     <div class="search-by-category">
         <select id="category-select">
             <option value="">Select Category</option>
-            @foreach (var category in Model.Select(book => book.category).Distinct())
+            @foreach (var category in Model)
             {
-                <option value="@category">@category</option>
+                <option value="@category.category">@category.category</option>
             }
         </select>
         <button id="search-button-category" class="cssbuttons-io">
@@ -514,20 +504,13 @@
             <a href="Onsale">On Sale</a>
             <a href="request">Order a book</a>
             <a href="answer">notifications</a>
+            <a href="mostp">Best Seller</a>
             <a href="#" id="view-basket">View Basket</a>
             <a href="login">Log-Out    </a>
         </div>
 
-
     </header>
-    <div>
-        <button id="show-best-seller" class="cssbuttons-io">
-            <span>
-                <i class="fas fa-trophy category-icon"></i>
-                Show Best Seller
-            </span>
-        </button>
-    </div>
+
     <div class="container">
 
 
@@ -556,8 +539,7 @@
                         </p>
                         @*<div class="Btn add-to-basket" data-product-id="@item.name" data-product-name="@item.name" data-product-price="@item.price">Add to Basket</div>*@
                         @*<button class="buy-now" >Buy Now</button>*@
-                        @*<button onclick="buyNow('@item.name', 1)" class="buy-now">Buy Now</button>*@
-                        <button onclick="sendValueToServer1('@item.name')" id="buy-now" class="buy-now">buy now</button>
+                        <button onclick="sendValueToServer()" id="buy-now" class="buy-now"><a href="payment">Buy Now</a></button>
                     </div>
                 </div>
             }
@@ -581,30 +563,17 @@
 
         </div>
     </div>
-
     @*<button onclick="sendValueToServer()">Send Value to Server</button>*@
-<script>
+    <script>
         var basket = [];
         var basketContents;
         function sendValueToServer() {
             console.log(basket);
-
-                localStorage.setItem('name', basket[0].name);
-                localStorage.setItem('quantity', basket[0].quantity);
-
+            localStorage.setItem('name', basket[0].name);
+            localStorage.setItem('quantity', basket[0].quantity);
             window.location.href = 'payment';
 
-    }
-    function sendValueToServer1(neme) {
-        
-
-        localStorage.setItem('name', neme);
-        localStorage.setItem('quantity', 1);
-
-        window.location.href = 'payment';
-
-    }
-
+        }
         document.addEventListener("DOMContentLoaded", function () {
             const addToBasketButtons = document.querySelectorAll(".add-to-basket");
             const viewBasketLink = document.getElementById("view-basket");
@@ -620,43 +589,9 @@
             const searchPriceButton = document.getElementById("search-price-button");
             const categorySelect = document.getElementById("category-select");
             const searchButtonCategory = document.getElementById("search-button-category");
-            const showBestSellerButton = document.getElementById("show-best-seller");
-            //const products = document.querySelectorAll(".product");
 
-            searchButtonCategory.addEventListener("click", function () {
-                const selectedCategory = document.getElementById("category-select").value.trim().toLowerCase();
 
-                if (selectedCategory === "") {
-                    alert("Please select a category.");
-                    return;
-                }
 
-                products.forEach(product => {
-                    const category = product.getAttribute("data-category").toLowerCase();
-
-                    if (category.includes(selectedCategory)) {
-                        product.style.display = "block";
-                    } else {
-                        product.style.display = "none";
-                    }
-                });
-            });
-            showBestSellerButton.addEventListener("click", function () {
-                // Sort products by quantity sold in descending order
-                const sortedProducts = [...products].sort((a, b) => {
-                    const quantityA = parseInt(a.querySelector(".amount").textContent.split(":")[1].trim());
-                    const quantityB = parseInt(b.querySelector(".amount").textContent.split(":")[1].trim());
-                    return quantityB - quantityA;
-                });
-
-                // Hide all products
-                products.forEach(product => {
-                    product.style.display = "none";
-                });
-
-                // Display only the best seller (top product)
-                sortedProducts[0].style.display = "block";
-            });
             searchPriceButton.addEventListener("click", function () {
                 const minPrice = parseFloat(minPriceInput.value);
                 const maxPrice = parseFloat(maxPriceInput.value);
@@ -821,8 +756,8 @@
         window.location.href = '@Url.Action("payment", new { bookName = "__bookName__", quantity = "__quantity__" })'.replace('__bookName__', bookName).replace('__quantity__', quantity);
     }
 
-</script>
-
+    </script>
+    @*<script>  <a href="payment.html?value=item.quantity">Go to Page 2</a></script>*@
 </body>
 </html>
 

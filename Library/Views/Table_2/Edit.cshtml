@@ -1,45 +1,136 @@
 ﻿@model Library.Models.Book
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('https://www.teahub.io/photos/full/82-828177_white-book-backgrounds-powerpoint-template.jpg');
+            background-size: cover;
+            background-position: center;
+            background-color: #7f7f6e;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
 
-    @{
-        ViewBag.Title = "Edit";
+        .container {
+            margin-top: 50px;
+        }
 
-    }
+        .card {
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
 
-    <h2>Edit</h2>
+        .card-body {
+            padding: 40px;
+        }
+
+        label {
+            font-weight: bold;
+            color: #15406f;
+        }
+
+        .form-control {
+            border-radius: 10px;
+            border-color: #ced4da;
+        }
+
+        .btn-primary, .btn-secondary {
+            border-radius: 20px;
+            padding: 10px 20px;
+            font-size: 18px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background-color: #808080;
+            border-color: #007bff;
+        }
+
+        .btn-secondary {
+            background-color: #5d5959;
+            border-color: #6c757d;
+        }
+
+            .btn-primary:hover, .btn-secondary:hover {
+                transform: translateY(-2px);
+            }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h2 class="text-center mb-4" style="color: #007bff;">Edit Book</h2>
+                        <hr />
+
+                        @using (Html.BeginForm())
+                        {
+                            @Html.AntiForgeryToken()
+
+                            <div class="form-group">
+                                <label for="name">Name:</label>
+                                @Html.EditorFor(model => model.name, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+
+                            <div class="form-group">
+                                <label for="price">Price:</label>
+                                @Html.EditorFor(model => model.price, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+
+                            <div class="form-group">
+                                <label for="amount">Amount:</label>
+                                @Html.EditorFor(model => model.amount, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+
+                            <div class="form-group">
+                                @*<label for="category">Category:</label>*@
+                                @Html.HiddenFor(model => model.category, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+
+                            <div class="form-group">
+                                @*<label for="date">Date:</label>*@
+                                @Html.HiddenFor(model => model.date, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+                            @*<div class="form-group">
+                                <label for="image">Current Image:</label>
+                                <img src="@Model.image" alt="Book Image" class="img-fluid">
+                                @Html.HiddenFor(model => model.image, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>*@
+
+                            <div class="form-group">
+                                @*<label for="onsale">On Sale:</label>*@
+                                @Html.HiddenFor(model => model.onsale, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
 
 
-    @using (Html.BeginForm())
-    {
-        @Html.AntiForgeryToken()
 
-<div class="form-horizontal">
-    <h4>Book</h4>
-    <hr />
-    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-    @Html.EditorFor(model => model.name)
+                            <div class="text-center mt-4">
+                                <button type="submit" class="btn btn-primary">Save</button>
+                                @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-secondary" })
+                            </div>
+                        }
 
-    @Html.EditorFor(model => model.price)
-
-    @Html.EditorFor(model => model.amount)
-
-    @Html.EditorFor(model => model.category)
-
-    @Html.EditorFor(model => model.date)
-
-    @Html.EditorFor(model => model.onsale)
-
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Save" class="btn btn-default" />
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
-</div>
-    }
-
-    <div>
-        @Html.ActionLink("Back to List", "Index")
     </div>
 
     @section Scripts {
         @Scripts.Render("~/bundles/jqueryval")
     }
+</body>
+</html>

@@ -15,9 +15,20 @@ namespace Library.Models
 
     public partial class Table_2
     {
-        [Key] 
+
+        [Key]
+        [Required(ErrorMessage ="Username is required")]
         public string Username { get; set; }
+
+
+
+        [Required(ErrorMessage = "Email is required")]
+        [EmailAddress(ErrorMessage ="invalid email format")]
         public string Email { get; set; }
+
+
+        [Required(ErrorMessage = "password is required")]
         public string Password { get; set; }
+      
     }
 }

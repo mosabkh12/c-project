@@ -116,18 +116,20 @@
 
             <div class="form-group">
                 @Html.LabelFor(model => model.Username)
-                @Html.EditorFor(model => model.Username, new { @class = "form-control", required = "required", pattern = "^[a-zA-Z0-9]+$", title = "Username can only contain letters and numbers" })
+                @Html.TextBoxFor(model => model.Username, new { @class = "form-control", required = "required", pattern = "^[a-zA-Z0-9]+$", title = "Username can only contain letters and numbers" })
+                @Html.ValidationMessageFor(model => model.Username, "", new { @class = "text-danger" })
             </div>
 
             <div class="form-group">
                 @Html.LabelFor(model => model.Email)
-                @Html.EditorFor(model => model.Email, new { @class = "form-control", required = "required", type = "email" })
+                @Html.TextBoxFor(model => model.Email, new { @class = "form-control", required = "required", type = "email" })
+                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
             </div>
 
             <div class="form-group">
                 @Html.LabelFor(model => model.Password)
-                @Html.EditorFor(model => model.Password, new { @class = "form-control", required = "required", pattern = "^.{6,}$", title = "Password must be at least 6 characters long" })
-                <div id="passwordError" class="text-danger"></div> <!-- Added for password error message -->
+                @Html.PasswordFor(model => model.Password, new { @class = "form-control", required = "required", pattern = "^.{6,}$", title = "Password must be at least 6 characters long" })
+                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
             </div>
 
             <button type="submit" class="btn btn-submit">Submit</button>
@@ -135,31 +137,20 @@
             <div class="alert-danger">@ViewBag.DuplicateMessage</div>
 
         }
-
+   
         <!-- Login button -->
         <a href="@Url.Action("Login", "Table_2")" class="btn btn-login">Login</a>
+   <div>
 
+   </div>
+        <a href="@Url.Action("Products", "Table_2")" class="btn btn-login">Home Page</a>
+    
     </div>
-
+ 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
-    <script>
-        // Client-side validation for password field to check minimum length
-        document.addEventListener("DOMContentLoaded", function () {
-            var passwordField = document.getElementById("Password");
-            passwordField.addEventListener("input", function () {
-                var errorMessage = document.getElementById("passwordError");
-                if (passwordField.validity.patternMismatch) {
-                    passwordField.setCustomValidity("Password must be at least 6 characters long");
-                    errorMessage.innerText = "Password must be at least 6 characters long";
-                } else {
-                    passwordField.setCustomValidity("");
-                    errorMessage.innerText = "";
-                }
-            });
-        });
-    </script>
+  
 
 </body>
 </html>

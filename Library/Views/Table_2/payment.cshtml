@@ -1,0 +1,302 @@
+﻿@model Library.Models.payment2
+
+@{
+    ViewBag.Title = "Create";
+}
+
+
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["SuccessMessage"]
+    </div>
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('https://watermark.lovepik.com/photo/40023/3030.jpg_wh1200.jpg'); /* Add the path to your background image */
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+
+        .visa-card {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: flex-end;
+            width: 500px;
+            height: 320px;
+            background-image: radial-gradient( circle 897px at 9% 80.3%, rgba(55, 60, 245, 1) 0%, rgba(234, 161, 15, 0.9) 100.2% );
+            border-radius: 10px;
+            padding: 20px;
+            font-family: Arial, Helvetica, sans-serif;
+            position: relative;
+            gap: 15px;
+        }
+
+        .logoContainer {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            height: fit-content;
+            position: absolute;
+            top: 0;
+            left: 0;
+            padding: 30px;
+        }
+
+        .svgLogo {
+            height: 40px;
+            width: auto;
+        }
+
+        .inputstyle::placeholder {
+            color: #ffffff;
+        }
+
+        .inputstyle {
+            background-color: transparent;
+            border: none;
+            outline: none;
+            color: white;
+            caret-color: red;
+            font-size: 20px;
+            height: 30px;
+            letter-spacing: 2px;
+        }
+
+        .number-container {
+            width: 100%;
+            height: fit-content;
+            display: flex;
+            flex-direction: column;
+        }
+
+        #cardNumber {
+            width: 100%;
+            height: 25px;
+        }
+
+        .name-date-cvv-container {
+            width: 100%;
+            height: 25px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .name-wrapper {
+            width: 60%;
+            height: fit-content;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .expiry-wrapper,
+        .cvv-wrapper {
+            width: 30%;
+            height: fit-content;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .cvv-wrapper {
+            width: 10%;
+        }
+
+        #expiry,
+        #cvv {
+            width: 100%;
+        }
+
+        .input-label {
+            font-size: 8px;
+            letter-spacing: 1.5px;
+            color: #e2e2e2;
+            width: 100%;
+        }
+
+        .Btn {
+            width: 110px;
+            height: 50px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background-color: rgba(55, 60, 245, 1);
+            border: none;
+            color: white;
+            font-weight: 600;
+            gap: 8px;
+            cursor: pointer;
+            box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.103);
+            position: relative;
+            overflow: hidden;
+            transition-duration: .3s;
+            margin-right: 2px;
+            border-radius: 10%
+        }
+
+        .svgIcon {
+            width: 16px;
+        }
+
+            .svgIcon path {
+                fill: white;
+            }
+
+        .Btn::before {
+            width: 130px;
+            height: 130px;
+            position: absolute;
+            content: "";
+            background-color: white;
+            border-radius: 100%;
+            left: -130%;
+            top: 0;
+            transition-duration: .3s;
+            mix-blend-mode: difference;
+        }
+
+        .Btn:hover::before {
+            transition-duration: .3s;
+            transform: translate(100%,-50%);
+            border-radius: 0;
+        }
+
+        .Btn:active {
+            transform: translate(5px,5px);
+            transition-duration: .3s;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        header {
+            text-align: center;
+            padding: 20px;
+            background-color: #66afe9;
+            color: #f7d082;
+            margin-bottom: 20px;
+        }
+
+            header h1 {
+                margin: 0;
+                font-size: 36px;
+            }
+
+        .nav-links {
+            margin-top: 2px;
+        }
+
+            .nav-links a {
+                color: white;
+                text-decoration: none;
+                margin-right: 100px;
+                background-color: red;
+                transition: color 0.3s ease;
+            }
+
+                .nav-links a:hover {
+                    color: #e2e2e2;
+                }
+
+        .cancel-button {
+            position: relative;
+            font-size: 1.2em;
+            padding: 0.7em 1.4em;
+            background-color: #BF0426;
+            text-decoration: none;
+            border: none;
+            border-radius: 0.5em;
+            color: #DEDEDE;
+            box-shadow: 0.5em 0.5em 0.5em rgba(0, 0, 0, 0.3);
+        }
+
+            .cancel-button::before {
+                position: absolute;
+                content: '';
+                height: 16;
+                width: 0;
+                top: 0;
+                left: 0;
+                background: linear-gradient(135deg, rgba(33,33,33,1) 0%, rgba(33,33,33,1) 50%, rgba(150,4,31,1) 50%, rgba(191,4,38,1) 60%);
+                border-radius: 5%;
+                box-shadow: 0.2em 0.2em 0.2em rgba(0, 0, 0, 0.3);
+                transition: 0.3s;
+            }
+    </style>
+    <h2 style="color: white;">Payment</h2>
+
+    <div class="visa-card">
+        <div class="logoContainer">
+            <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="23" height="23" viewBox="0 0 48 48" class="svgLogo">
+                <path fill="#ff9800" d="M32 10A14 14 0 1 0 32 38A14 14 0 1 0 32 10Z"></path>
+                <path fill="#d50000" d="M16 10A14 14 0 1 0 16 38A14 14 0 1 0 16 10Z"></path>
+                <path fill="#ff3d00" d="M18,24c0,4.755,2.376,8.95,6,11.48c3.624-2.53,6-6.725,6-11.48s-2.376-8.95-6-11.48C20.376,15.05,18,19.245,18,24z"></path>
+            </svg>
+        </div>
+        <div class="number-container">
+            @Html.LabelFor(model => model.cardnum, htmlAttributes: new { @class = "input-label" })
+            @Html.EditorFor(model => model.cardnum, new { htmlAttributes = new { @class = "inputstyle", placeholder = "XXXX XXXX XXXX XXXX", id = "cardNumber", name = "cardNumber", type = "text" } })
+            @Html.ValidationMessageFor(model => model.cardnum, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="name-date-cvv-container">
+            <div class="name-wrapper">
+                @Html.LabelFor(model => model.cardholder, htmlAttributes: new { @class = "input-label" })
+                @Html.EditorFor(model => model.cardholder, new { htmlAttributes = new { @class = "inputstyle", placeholder = "NAME", id = "holderName", type = "text" } })
+                @Html.ValidationMessageFor(model => model.cardholder, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="expiry-wrapper">
+                @Html.LabelFor(model => model.expdate, htmlAttributes: new { @class = "input-label" })
+                @Html.EditorFor(model => model.expdate, new { htmlAttributes = new { @class = "inputstyle", placeholder = "MM/YY", id = "expiry", type = "text" } })
+                @Html.ValidationMessageFor(model => model.expdate, "", new { @class = "text-danger" })
+            </div>
+            <div class="cvv-wrapper">
+                @Html.LabelFor(model => model.cvv, htmlAttributes: new { @class = "input-label" })
+                @Html.EditorFor(model => model.cvv, new { htmlAttributes = new { @class = "inputstyle", placeholder = "*", maxlength = "3", id = "cvv", type = "password" } })
+                @Html.ValidationMessageFor(model => model.cvv, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="nav-links">
+            <input type="hidden" id="hiddenInput" name="hiddenInput" value="">
+            <button type="submit" class="Btn">
+                Pay
+                <svg class="svgIcon" viewBox="0 0 576 512"><path d="M512 80c8.8 0 16 7.2 16 16v32H48V96c0-8.8 7.2-16 16-16H512zm16 144V416c0 8.8-7.2 16-16 16H64c-8.8 0-16-7.2-16-16V224H528zM64 32C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64H512c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64H64zm56 304c-13.3 0-24 10.7-24 24s10.7 24 24 24h48c13.3 0 24-10.7 24-24s-10.7-24-24-24H120zm128 0c-13.3 0-24 10.7-24 24s10.7 24 24 24H360c13.3 0 24-10.7 24-24s-10.7-24-24-24H248z"></path></svg>
+            </button>
+            <a href="Products" class="cancel-button">Cancel</a>
+        </div>
+    </div>
+
+
+
+
+}
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <!-- Hidden input element -->
+
+    <script>// Retrieve data from localStorage
+        var name = localStorage.getItem('name');
+        var quantity = localStorage.getItem('quantity');
+
+        // Set value of hidden input to localStorage data
+        var hiddenInput = document.getElementById('hiddenInput');
+        hiddenInput.value = name + ',' + quantity;
+    </script>
+  
+}

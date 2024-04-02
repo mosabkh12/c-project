@@ -4,260 +4,806 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>library</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-image: url('https://images4.alphacoders.com/132/1326368.png'); /* Add the URL to your background image */
-            background-size: cover; /* Ensure the background image covers the entire screen */
-            background-repeat: no-repeat; /* Prevent the background image from repeating */
-            background-position: center; /* Center the background image */
-        }
+    <title>Library</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
-        header {
-            color: #ffffff;
-            padding: 30px;
-            text-align: center;
-        }
+     <style>
+      /* Global Styles */
+      * {
+          box-sizing: border-box;
+          margin: 0;
+          padding: 0;
+      }
 
-        .container {
-            max-width: 1200px;
-            margin: 20px auto;
-            padding: 0 20px;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
+      body {
+          font-family: Arial, sans-serif;
+          background-image: url('https://static.vecteezy.com/system/resources/previews/030/759/702/large_2x/old-books-on-a-wooden-table-in-the-library-selective-focus-book-stack-with-ladder-on-sky-with-clouds-background-free-photo.jpg'); /* Add the path to your background image */
+          background-size: cover;
+          background-repeat: no-repeat;
+      }
 
-        .product {
-            background-color: #96693e;
-            border-radius: 5px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            margin: 10px;
-            width: 200px;
-            overflow: hidden;
-            transition: transform 0.3s ease-in-out;
-        }
+      .container {
+          max-width: 1200px;
+          margin: 0 auto;
+          padding: 5px;
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: center;
+      }
+      /* Header Styles */
+      header {
+          text-align: center;
+          padding: 20px;
+          /*background-color: #66afe9;*/
+          color: #fcc16e;
+          margin-bottom: 20px;
+      }
 
-            .product:hover {
-                transform: translateY(-5px);
-            }
+          header h1 {
+              margin: 0;
+              font-size: 36px;
+          }
 
-            .product img {
-                width: 100%;
-                height: auto;
-                border-top-left-radius: 5px;
-                border-top-right-radius: 5px;
-            }
+      .nav-links {
+          margin-top: 10px;
+      }
 
-        .product-info {
-            padding: 20px;
-        }
+          .nav-links a {
+              color: #ffd277;
+              text-decoration: none;
+              margin-right: 20px;
+              transition: color 0.3s ease;
+          }
 
-            .product-info h3 {
-                margin-top: 0;
-                font-size: 1.2em;
-                color: #333;
-            }
+              .nav-links a:hover {
+                  color: #66afe9;
+              }
+      /* Product Styles */
+      .product {
+          background-color: #fbebca;
+          border-radius: 50px;
+          box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+          margin: 20px;
+          width: 250px;
+          overflow: hidden;
+          transition: transform 0.3s ease-in-out;
+      }
 
-            .product-info p {
-                margin-bottom: 0;
-                color: #000;
-            }
+          .product:hover {
+              transform: translateY(-5px);
+          }
 
-                .product-info p.price {
-                    font-weight: bold;
-                    color: #000000;
-                }
+          .product img {
+              width: 100%;
+              height: auto;
+              border-top-left-radius: 5px;
+              border-top-right-radius: 5px;
+          }
 
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 9999;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto;
-            background-color: rgba(0, 0, 0, 0.5); /* Background overlay */
-        }
+      .product-info {
+          padding: 20px;
+      }
 
-        .modal-content {
-            background-color: #fefefe;
-            margin: 20% auto;
-            padding: 20px;
-            border: 1px solid #888;
-            border-radius: 10px;
-            width: 80%;
-            max-width: 600px;
-            animation: modal-fade 0.5s;
-        }
+          .product-info h3 {
+              margin-top: 0;
+              font-size: 1.2em;
+              color: #333;
+          }
 
-        modal-fade {
-            from
+          .product-info p {
+              margin-bottom: 10px;
+              color: #666;
+          }
 
-        {
-            opacity: 0;
-        }
+              .product-info p.price {
+                  font-weight: bold;
+                  color: #333;
+              }
 
-        to {
-            opacity: 1;
-        }
+      .Btn {
+          width: 140px;
+          height: 40px;
+          border: none;
+          border-radius: 10px;
+          background: linear-gradient(to right, #77530a, #ffd277, #77530a, #77530a, #ffd277, #77530a);
+          background-size: 250%;
+          background-position: left;
+          color: #ffd277;
+          position: relative;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          cursor: pointer;
+          transition-duration: 1s;
+          overflow: hidden;
+      }
 
-        }
+          .Btn::before {
+              position: absolute;
+              content: "Add To The Cart";
+              color: #ffd277;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              width: 97%;
+              height: 90%;
+              border-radius: 8px;
+              transition-duration: 1s;
+              background-color: rgba(0, 0, 0, 0.842);
+              background-size: 200%;
+          }
 
-        .close {
-            color: #aaa;
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
-        }
+          .Btn:hover {
+              background-position: right;
+              transition-duration: 1s;
+          }
 
-            .close:hover,
-            .close:focus {
-                color: black;
-                text-decoration: none;
-                cursor: pointer;
-            }
+              .Btn:hover::before {
+                  background-position: right;
+                  transition-duration: 1s;
+              }
 
-        #basket-contents {
-            margin-top: 20px;
-        }
+          .Btn:active {
+              transform: scale(0.95);
+          }
 
-        #total-price {
-            font-weight: bold;
-            margin-top: 10px;
-        }
-    </style>
+      .buy-now {
+          background-color: #000000;
+          border: none;
+          color: white;
+          padding: 8px 20px;
+          text-align: center;
+          text-decoration: none;
+          display: inline-block;
+          font-size: 16px;
+          margin-top: 10px;
+          transition: background-color 0.3s;
+          border-radius: 10px;
+          cursor: pointer;
+      }
+
+          .buy-now:hover {
+              background-color: #3b3838;
+          }
+
+          .buy-now a {
+              color: #ffd277;
+              text-decoration: none;
+          }
+
+      .search-container2 {
+          position: absolute;
+          top: 20px; /* Adjust this value to your desired distance from the top */
+          right: 20px; /* Adjust this value to your desired distance from the right */
+          display: flex;
+          flex-direction: column; /* Align items vertically */
+          align-items: flex-end; /* Align items to the right */
+          z-index: 1000; /* Ensure the search button appears on top of other elements */
+      }
+
+      .search-by-category {
+          position: absolute;
+          top: 20px; /* Adjust this value to your desired distance from the top */
+          right: 20px; /* Adjust this value to your desired distance from the right */
+          display: flex;
+          z-index: 1000;
+          margin-bottom: 1px; /* Add some space below the search by category section */
+      }
+
+          /* Style for the select dropdown */
+          .search-by-category select {
+              padding: 2px 1px;
+              border: none;
+              border-radius: 5px;
+              background: #fff;
+              color: #333;
+              font-size: 13px;
+              margin-right: 2px;
+          }
+
+          /* Style for the search button */
+          .search-by-category button {
+              border: none;
+              background: linear-gradient(to right, rgba(76, 175, 80, 0.5), rgba(46, 139, 87, 0.5)); /* Adjust the opacity of the colors here */
+              color: #ffd277;
+              padding: 5px 5px;
+              border-radius: 5px;
+              cursor: pointer;
+              transition: background 0.3s ease;
+          }
+
+              .search-by-category button:hover {
+                  background: linear-gradient(to right, rgba(76, 175, 80, 0.7), rgba(46, 139, 87, 0.7)); /* Adjust the opacity of the colors here */
+              }
+
+      .search-container5 {
+          position: absolute;
+          top: 20px;
+          left: 20px; /* Adjust this value to your desired distance from the left */
+          display: flex;
+          align-items: center;
+          z-index: 1000;
+      }
+
+      #min-price,
+      #max-price {
+          width: 100px;
+          padding: 8px;
+          border: 1px solid #ccc;
+          border-radius: 5px;
+          margin-right: 10px;
+          font-size: 16px;
+      }
+
+      .search-by-price-btn {
+          padding: 10px 20px;
+          background-color: rgba(0, 0, 0, 0.1);
+          color: #ffd277;
+          border: none;
+          border-radius: 5px;
+          cursor: pointer;
+          transition: background-color 0.3s;
+      }
+
+          .search-by-price-btn:hover {
+              background-color: #45a049;
+          }
+
+          .search-by-price-btn:active {
+              transform: scale(0.95);
+          }
+
+      .search-container {
+          position: absolute;
+          top: 80px; /* Adjust this value to your desired distance from the top */
+          right: 25px; /* Adjust this value to your desired distance from the right */
+          display: flex;
+          z-index: 1000; /* Ensure the search button appears on top of other elements */
+      }
+
+      .search-container2 {
+          position: absolute;
+          top: 20px; /* Adjust this value to your desired distance from the top */
+          right: 20px; /* Adjust this value to your desired distance from the right */
+          display: flex;
+          z-index: 1000; /* Ensure the search button appears on top of other elements */
+      }
+      /* Search button style */
+      #search-button {
+          border: none;
+          background: none;
+          cursor: pointer;
+          outline: none;
+          color: #ffd277;
+          font-size: 12px;
+          padding: 8px;
+      }
+
+          #search-button:hover {
+              color: #66afe9; /* Adjust hover color if needed */
+          }
+
+      .cssbuttons-io {
+          position: relative;
+          font-family: inherit;
+          font-weight: 400;
+          font-size: 13px;
+          border-radius: 0.8em;
+          cursor: pointer;
+          border: none;
+          background: linear-gradient(to right, #00bf63, #5ce1e6);
+          color: ghostwhite;
+          overflow: hidden;
+      }
+
+          .cssbuttons-io svg {
+              width: 1.2em;
+              height: 1.2em;
+              margin-left: 0.7em;
+              stroke-width: 2px;
+          }
+
+          .cssbuttons-io span {
+              position: relative;
+              z-index: 10;
+              transition: color 0.4s;
+              display: inline-flex;
+              align-items: center;
+              padding: 0.8em 0.9em 0.8em 1.02em;
+          }
+
+          .cssbuttons-io::before,
+          .cssbuttons-io::after {
+              position: absolute;
+              top: 0;
+              left: 0;
+              width: 100%;
+              height: 100%;
+              z-index: 0;
+          }
+
+          .cssbuttons-io::before {
+              content: "";
+              background: #000;
+              width: 120%;
+              left: -10%;
+              transform: skew(30deg);
+              transition: transform 0.4s cubic-bezier(0.3, 1, 0.8, 1);
+          }
+
+          .cssbuttons-io:hover::before {
+              transform: translate3d(100%, 0, 0);
+          }
+
+          .cssbuttons-io:active {
+              transform: scale(0.95);
+          }
+
+      .modal {
+          display: none;
+          position: fixed;
+          z-index: 1000;
+          left: 0;
+          top: 0;
+          width: 100%;
+          height: 100%;
+          overflow: auto;
+          background-color: rgba(0, 0, 0, 0.5);
+      }
+
+      .modal-content {
+          background-color: #fefefe;
+          margin: 15% auto;
+          padding: 20px;
+          border: 1px solid #888;
+          border-radius: 10px;
+          width: 80%;
+          max-width: 600px;
+          position: relative;
+      }
+
+      .close {
+          color: #aaa;
+          float: right;
+          font-size: 28px;
+          font-weight: bold;
+      }
+
+          .close:hover,
+          .close:focus {
+              color: black;
+              text-decoration: none;
+              cursor: pointer;
+          }
+
+      #basket-contents {
+          max-height: 300px;
+          overflow-y: auto;
+      }
+
+      .basket-item {
+          border-bottom: 1px solid #ddd;
+          padding: 10px 0;
+      }
+
+          .basket-item:last-child {
+              border-bottom: none;
+          }
+
+      .remove-from-basket {
+          background-color: #d01323;
+          color: white;
+          border: none;
+          padding: 5px 10px;
+          border-radius: 5px;
+          cursor: pointer;
+      }
+
+          .remove-from-basket:hover {
+              background-color: #d6303;
+          }
+
+      .total-price {
+          font-weight: bold;
+          text-align: right;
+          margin-top: 10px;
+      }
+
+      .pay-button {
+          background-color: black;
+          color: white;
+          border: none;
+          padding: 10px 20px;
+          border-radius: 5px;
+          cursor: pointer;
+          margin-top: 20px;
+      }
+
+          .pay-button:hover {
+              background-color: black;
+          }
+
+      .buy-now {
+          background-color: #000000;
+          border: none;
+          color: white;
+          padding: 10px 20px;
+          text-align: center;
+          text-decoration: none;
+          display: inline-block;
+          font-size: 16px;
+          margin-top: 10px;
+          border-radius: 20px;
+          transition: background-color 0.3s;
+          cursor: pointer;
+          box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      }
+
+          .buy-now:hover {
+              background-color: rgba(0, 0, 0, 0.1);
+          }
+
+          .buy-now:active {
+              transform: translateY(1px);
+              box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+          }
+      #show-best-seller {
+          position: fixed;
+          top: 80px;
+          left: 20px;
+          z-index: 1001;
+          background: linear-gradient(to right, #ff4500, #ff8c00);
+          color: #ffd277;
+          /*#ffd277*/
+      }
+  </style>
 </head>
 <body>
+    <div class="search-container">
 
+        <input type="text" id="search-input" placeholder="Search...">
+        <button id="search-button" class="cssbuttons-io">
+            <span>
+                Search
+                <svg viewBox="0 0 19.9 19.7" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc" class="svg-icon search-icon">
+                    <title>Search Icon</title>
+                    <desc id="desc">A magnifying glass icon.</desc>
+                    <g stroke="white" fill="none" class="search-path">
+                        <path d="M18.5 18.3l-5.4-5.4" stroke-linecap="square"></path>
+                        <circle r="7" cy="8" cx="8"></circle>
+                    </g>
+                </svg>
+            </span>
+        </button>
+    </div>
+
+
+    <div class="search-container5">
+        <input type="number" id="min-price" placeholder="Min Price">
+        <span>-</span>
+        <input type="number" id="max-price" placeholder="Max Price">
+        <button id="search-price-button" class="search-by-price-btn">
+            Search
+        </button>
+
+    </div>
+    <div class="search-by-category">
+        <select id="category-select">
+            <option value="">Select Category</option>
+            @foreach (var category in Model.Select(book => book.category).Distinct())
+            {
+                <option value="@category">@category</option>
+            }
+        </select>
+        <button id="search-button-category" class="cssbuttons-io">
+            <span>
+                <i class="fas fa-search category-icon"></i>
+                Search by Category
+            </span>
+        </button>
+    </div>
     <header>
-        <h1>library</h1>
-        <!-- Add a button or link to view the basket -->
-        <!-- Add a button to show products on sale -->
-        <a href="Onsale" id="on-sale">On sale</a>
-        <!-- Add a link to view the basket -->
-        <a href="#" id="view-basket">View Basket</a>
-        <div>
+        <h1>Library</h1>
+        <div class="nav-links">
+            <a href="Products">Home</a>
+            <a href="request">Order a book</a>
+            <a href="answer">notifications</a>
+            <a href="#" id="view-basket">View Basket</a>
+            <a href="login">Log-Out    </a>
+
         </div>
-        <a href="login" id="login">Log In</a>
+        <div>
+            <button id="show-best-seller" class="cssbuttons-io">
+                <span>
+                    <i class="fas fa-trophy category-icon"></i>
+                    Show Best Seller
+                </span>
+            </button>
+        </div>
     </header>
-   
-        @foreach (var item in Model)
-        {
-            <div class="container">
-                <div class="product">
-                    @if (item.onsale.HasValue && item.onsale > 0)
-                    {
 
 
 
-                        <img src="@item.image" alt="Book 1">
-                        <div class="product-info">
-                            <h3>@item.name</h3>
-                            <p class="category">Category: @item.category</p>
-                            <p class="age">Age limit: @item.age</p>
 
-                            <p class="price">
-                                <span style="text-decoration: line-through;">Price: $@item.price</span>
-                                <br />
-                                <span style="color: red;">Discounted Price: $@(item.price - (item.price * item.onsale / 100))</span>
-                            </p>
+    @foreach (var item in Model)
+    {
+        <div class="container">
+            <div class="product">
+                @if (item.onsale.HasValue && item.onsale > 0)
+                {
+                    <img src="@item.image" alt="@item.name">
+                    <div class="product-info">
+                        <h3>@item.name</h3>
+                        <p class="category">Category: @item.category</p>
+                        <p class="amount">Amount: @item.amount</p>
+                        <p class="price">
 
 
-                            <button class="add-to-basket" data-product-id="@item.name" data-product-name="@item.name" data-product-price="@item.price">Add to Basket</button>
-                        </div>
+                            <span style="text-decoration: line-through;">Price: $@item.price</span><br />
+                            <span style="color: red;">Discounted Price: $@(item.price - (item.price * item.onsale / 100))</span>
 
-                    }
-                </div>
-            </div>
+                        </p>
+                    </div>
+                    <div class="Btn add-to-basket" data-product-id="@item.name" data-product-name="@item.name" data-product-price="@(item.price - (item.price * item.onsale / 100))">Add to Basket</div>
+                    <button onclick="sendValueToServer1('@item.name')" id="buy-now" class="buy-now">buy now</button>
                 }
-          
+            </div>
+        </div>
+    }
 
-            <script>
-                document.addEventListener("DOMContentLoaded", function () {
-                    const addToBasketButtons = document.querySelectorAll(".add-to-basket");
-                    const viewBasketLink = document.getElementById("view-basket");
-                    const showSaleButton = document.getElementById("show-sale");
-                    const basketModal = document.getElementById("basket-modal");
-                    const closeBasketModal = document.querySelector(".close");
-                    const payButton = document.getElementById("pay-button");
-                    const products = document.querySelectorAll(".product"); // Select all product elements
 
-                    let basket = [];
+    <!-- Modal for displaying basket contents -->
+    <div id="basket-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Your Basket</h2>
+            <div id="basket-contents" class="basket-contents">
+                <!-- Basket contents will be displayed here dynamically -->
+            </div>
+            <p id="total-price" class="total-price"></p>
 
-                    addToBasketButtons.forEach(button => {
-                        button.addEventListener("click", function () {
-                            const productId = this.getAttribute("data-product-id");
-                            const productName = this.getAttribute("data-product-name");
-                            const productPrice = parseFloat(this.getAttribute("data-product-price"));
+            <button onclick="sendValueToServer()" id="pay-button" class="pay-button">Proceed to Payment</button>
 
-                            const existingProductIndex = basket.findIndex(item => item.name == productId);
-                            if (existingProductIndex !== -1) {
-                                basket[existingProductIndex].quantity++;
-                                basket[existingProductIndex].totalPrice += productPrice;
-                            } else {
-                                basket.push({
-                                    id: productId,
-                                    name: productName,
-                                    price: productPrice,
-                                    quantity: 1,
-                                    totalPrice: productPrice
-                                });
-                            }
+        </div>
+    </div>
+    <script>
+      var basket = [];
+    var basketContents;
+    function sendValueToServer() {
+        console.log(basket);
+        localStorage.setItem('name', basket[0].name);
+        localStorage.setItem('quantity', basket[0].quantity);
+        window.location.href = 'payment';
 
-                            updateBasketModal();
-                        });
+        }
+        function sendValueToServer1(neme) {
+
+
+            localStorage.setItem('name', neme);
+            localStorage.setItem('quantity', 1);
+
+            window.location.href = 'payment';
+
+        }
+
+    document.addEventListener("DOMContentLoaded", function () {
+        const addToBasketButtons = document.querySelectorAll(".add-to-basket");
+        const viewBasketLink = document.getElementById("view-basket");
+        const showSaleButton = document.getElementById("show-sale");
+        const basketModal = document.getElementById("basket-modal");
+        const closeBasketModal = document.querySelector(".close");
+        const payButton = document.getElementById("pay-button");
+        const products = document.querySelectorAll(".product");
+        const searchInput = document.getElementById("search-input");
+        const searchButton = document.getElementById("search-button");
+        const minPriceInput = document.getElementById("min-price");
+        const maxPriceInput = document.getElementById("max-price");
+        const searchPriceButton = document.getElementById("search-price-button");
+        const categorySelect = document.getElementById("category-select");
+        const searchButtonCategory = document.getElementById("search-button-category");
+        const showBestSellerButton = document.getElementById("show-best-seller");
+        //const products = document.querySelectorAll(".product");
+
+        searchButtonCategory.addEventListener("click", function () {
+            const selectedCategory = document.getElementById("category-select").value.trim().toLowerCase();
+
+            if (selectedCategory === "") {
+                alert("Please select a category.");
+                return;
+            }
+
+            products.forEach(product => {
+                const category = product.getAttribute("data-category").toLowerCase();
+
+                if (category.includes(selectedCategory)) {
+                    product.style.display = "block";
+                } else {
+                    product.style.display = "none";
+                }
+            });
+        });
+        showBestSellerButton.addEventListener("click", function () {
+            // Sort products by quantity sold in descending order
+            const sortedProducts = [...products].sort((a, b) => {
+                const quantityA = parseInt(a.querySelector(".amount").textContent.split(":")[1].trim());
+                const quantityB = parseInt(b.querySelector(".amount").textContent.split(":")[1].trim());
+                return quantityB - quantityA;
+            });
+
+            // Hide all products
+            products.forEach(product => {
+                product.style.display = "none";
+            });
+
+            // Display only the best seller (top product)
+            sortedProducts[0].style.display = "block";
+        });
+        searchPriceButton.addEventListener("click", function () {
+            const minPrice = parseFloat(minPriceInput.value);
+            const maxPrice = parseFloat(maxPriceInput.value);
+
+            if (isNaN(minPrice) || isNaN(maxPrice)) {
+                alert("Please enter valid minimum and maximum prices.");
+                return;
+            }
+
+            products.forEach(product => {
+                const priceElement = product.querySelector(".price");
+                const regularPriceElement = priceElement.querySelector("span:not(.discounted)");
+                const discountedPriceElement = priceElement.querySelector("span.discounted");
+                let productPrice;
+
+                if (discountedPriceElement) {
+                    productPrice = parseFloat(discountedPriceElement.textContent.replace("Discounted Price: $", ""));
+                } else if (regularPriceElement) {
+                    productPrice = parseFloat(regularPriceElement.textContent.replace("Price: $", ""));
+                } else {
+                    // If no price found, hide the product
+                    product.style.display = "none";
+                    return; // Move to the next product
+                }
+
+                // Check if the product price falls within the specified range
+                if (productPrice >= minPrice && productPrice <= maxPrice) {
+                    product.style.display = "block";
+                } else {
+                    product.style.display = "none";
+                }
+            });
+        });
+        addToBasketButtons.forEach(button => {
+            button.addEventListener("click", function () {
+                const productId = this.getAttribute("data-product-id");
+                const productName = this.getAttribute("data-product-name");
+                const productPrice = parseFloat(this.getAttribute("data-product-price"));
+
+                const existingProductIndex = basket.findIndex(item => item.name == productId);
+                if (existingProductIndex !== -1) {
+                    basket[existingProductIndex].quantity++;
+                    //basket[existingProductIndex].count++;
+                    basket[existingProductIndex].totalPrice += productPrice;
+                } else {
+                    basket.push({
+                        id: productId,
+                        name: productName,
+                        price: productPrice,
+                        quantity: 1,
+                        totalPrice: productPrice
                     });
+                }
 
-                    viewBasketLink.addEventListener("click", function (event) {
-                        event.preventDefault();
-                        basketModal.style.display = "block";
-                    });
+                updateBasketModal();
+            });
+        });
 
-                    closeBasketModal.addEventListener("click", function () {
-                        basketModal.style.display = "none";
-                    });
+        viewBasketLink.addEventListener("click", function (event) {
+            event.preventDefault();
+            basketModal.style.display = "block";
+        });
+        document.addEventListener("click", function (event) {
+            if (event.target.classList.contains("remove-from-basket")) {
+                const indexToRemove = parseInt(event.target.getAttribute("data-product-index"));
+                basket.splice(indexToRemove, 1); // Remove the product from the basket
+                updateBasketModal(); // Update the basket modal after removing
+            }
+        });
+        searchButton.addEventListener("click", function () {
+            const searchTerm = searchInput.value.trim().toLowerCase();
 
-                    showSaleButton.addEventListener("click", function () {
-                        products.forEach(product => {
-                            const priceElement = product.querySelector(".price");
-                            const isOnSale = priceElement.querySelector("span");
-                            if (!isOnSale) {
-                                product.style.display = "none";
-                            } else {
-                                product.style.display = "block";
-                            }
-                        });
-                    });
+            if (searchTerm === "") {
+                alert("Please enter a search term.");
+                return;
+            }
 
-                    payButton.addEventListener("click", function () {
-                        console.log("Payment button clicked. Proceed to payment process...");
-                    });
+            products.forEach(product => {
+                product.style.display = "none";
+            });
 
-                    function updateBasketModal() {
-                        const basketContents = document.getElementById("basket-contents");
-                        const totalPriceElement = document.getElementById("total-price");
-                        let totalPrice = 0;
+            products.forEach(product => {
+                const productName = product.querySelector(".product-info h3").textContent.toLowerCase();
+                if (productName.includes(searchTerm)) {
+                    product.style.display = "block";
+                }
+            });
+        });
 
-                        basketContents.innerHTML = "";
 
-                        basket.forEach(item => {
-                            totalPrice += item.totalPrice;
 
-                            const productHTML = `
+        closeBasketModal.addEventListener("click", function () {
+            basketModal.style.display = "none";
+        });
+
+        showSaleButton.addEventListener("click", function () {
+            products.forEach(product => {
+                const priceElement = product.querySelector(".price");
+                const isOnSale = priceElement.querySelector("span");
+                if (!isOnSale) {
+                    product.style.display = "none";
+                } else {
+                    product.style.display = "block";
+                }
+            });
+        });
+
+
+
+        function updateBasketModal() {
+            basketContents = document.getElementById("basket-contents");
+            const totalPriceElement = document.getElementById("total-price");
+            let totalPrice = 0;
+
+            basketContents.innerHTML = "";
+            let itemName = "";
+            let itemQuantity = 0;
+            basket.forEach((item, index) => {
+                totalPrice += item.totalPrice;
+                itemName = item.name;
+                itemQuantity = item.quantity;
+                //TempData["itemName"] = item.name;
+                //TempData["itemQuantity"] = item.quantity
+
+
+                const productHTML = `
+
                                                     <p>${item.name} x ${item.quantity} = ${item.totalPrice}</p>
+                                                    <button class="remove-from-basket" data-product-index="${index}">Remove</button>
                                                 `;
-                            basketContents.innerHTML += productHTML;
-                        });
+                basketContents.innerHTML += productHTML;
+                var value1 = item.name
+                var value2 = item.quantity
 
-                        totalPriceElement.textContent = `Total Price: $${totalPrice.toFixed(2)}`;
-                    }
+
+            });
+
+            totalPriceElement.textContent = `Total Price: $${totalPrice.toFixed(2)}`;
+
+
+
+            totalPriceElement.textContent = `Total Price: $${totalPrice.toFixed(2)}`;
+            localStorage.setItem('value', 'value1');
+            localStorage.setItem('value2', 'value2');
+            // Add event listeners for remove buttons
+            const removeFromBasketButtons = document.querySelectorAll(".remove-from-basket");
+            removeFromBasketButtons.forEach(button => {
+                button.addEventListener("click", function () {
+                    const indexToRemove = parseInt(this.getAttribute("data-product-index"));
+                    basket.splice(indexToRemove, 1); // Remove the product from the basket
+                    updateBasketModal(); // Update the basket modal after removing
                 });
-            </script>
+            });
+
+        }
+
+    });
+
+function buyNow(bookName) {
+    // Here you can add logic to increment a counter or keep track of the number of times the button is pressed
+    var quantity = 1; // You can adjust this value or use a counter variable
+    window.location.href = '@Url.Action("payment", new { bookName = "__bookName__", quantity = "__quantity__" })'.replace('__bookName__', bookName).replace('__quantity__', quantity);
+}
+
+    </script>
+    @*<script>  <a href="payment.html?value=item.quantity">Go to Page 2</a></script>*@
 </body>
 </html>
 
