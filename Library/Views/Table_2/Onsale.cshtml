@@ -1,4 +1,8 @@
 ﻿@model IEnumerable<Library.Models.Book>
+
+@{
+    ViewBag.Title = "Library";
+}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,456 +11,457 @@
     <title>Library</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
-     <style>
-      /* Global Styles */
-      * {
-          box-sizing: border-box;
-          margin: 0;
-          padding: 0;
-      }
+    <style>
+        /* Global Styles */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
-      body {
-          font-family: Arial, sans-serif;
-          background-image: url('https://static.vecteezy.com/system/resources/previews/030/759/702/large_2x/old-books-on-a-wooden-table-in-the-library-selective-focus-book-stack-with-ladder-on-sky-with-clouds-background-free-photo.jpg'); /* Add the path to your background image */
-          background-size: cover;
-          background-repeat: no-repeat;
-      }
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('https://static.vecteezy.com/system/resources/previews/030/759/702/large_2x/old-books-on-a-wooden-table-in-the-library-selective-focus-book-stack-with-ladder-on-sky-with-clouds-background-free-photo.jpg'); /* Add the path to your background image */
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
 
-      .container {
-          max-width: 1200px;
-          margin: 0 auto;
-          padding: 5px;
-          display: flex;
-          flex-wrap: wrap;
-          justify-content: center;
-      }
-      /* Header Styles */
-      header {
-          text-align: center;
-          padding: 20px;
-          /*background-color: #66afe9;*/
-          color: #fcc16e;
-          margin-bottom: 20px;
-      }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 5px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        /* Header Styles */
+        header {
+            text-align: center;
+            padding: 20px;
+            /*background-color: #66afe9;*/
+            color: #fcc16e;
+            margin-bottom: 20px;
+        }
 
-          header h1 {
-              margin: 0;
-              font-size: 36px;
-          }
+            header h1 {
+                margin: 0;
+                font-size: 36px;
+            }
 
-      .nav-links {
-          margin-top: 10px;
-      }
+        .nav-links {
+            margin-top: 10px;
+        }
 
-          .nav-links a {
-              color: #ffd277;
-              text-decoration: none;
-              margin-right: 20px;
-              transition: color 0.3s ease;
-          }
+            .nav-links a {
+                color: #ffd277;
+                text-decoration: none;
+                margin-right: 20px;
+                transition: color 0.3s ease;
+            }
 
-              .nav-links a:hover {
-                  color: #66afe9;
-              }
-      /* Product Styles */
-      .product {
-          background-color: #fbebca;
-          border-radius: 50px;
-          box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-          margin: 20px;
-          width: 250px;
-          overflow: hidden;
-          transition: transform 0.3s ease-in-out;
-      }
+                .nav-links a:hover {
+                    color: #66afe9;
+                }
+        /* Product Styles */
+        .product {
+            background-color: #fbebca;
+            border-radius: 50px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            margin: 20px;
+            width: 250px;
+            overflow: hidden;
+            transition: transform 0.3s ease-in-out;
+        }
 
-          .product:hover {
-              transform: translateY(-5px);
-          }
+            .product:hover {
+                transform: translateY(-5px);
+            }
 
-          .product img {
-              width: 100%;
-              height: auto;
-              border-top-left-radius: 5px;
-              border-top-right-radius: 5px;
-          }
+            .product img {
+                width: 100%;
+                height: auto;
+                border-top-left-radius: 5px;
+                border-top-right-radius: 5px;
+            }
 
-      .product-info {
-          padding: 20px;
-      }
+        .product-info {
+            padding: 20px;
+        }
 
-          .product-info h3 {
-              margin-top: 0;
-              font-size: 1.2em;
-              color: #333;
-          }
+            .product-info h3 {
+                margin-top: 0;
+                font-size: 1.2em;
+                color: #333;
+            }
 
-          .product-info p {
-              margin-bottom: 10px;
-              color: #666;
-          }
+            .product-info p {
+                margin-bottom: 10px;
+                color: #666;
+            }
 
-              .product-info p.price {
-                  font-weight: bold;
-                  color: #333;
-              }
+                .product-info p.price {
+                    font-weight: bold;
+                    color: #333;
+                }
 
-      .Btn {
-          width: 140px;
-          height: 40px;
-          border: none;
-          border-radius: 10px;
-          background: linear-gradient(to right, #77530a, #ffd277, #77530a, #77530a, #ffd277, #77530a);
-          background-size: 250%;
-          background-position: left;
-          color: #ffd277;
-          position: relative;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          cursor: pointer;
-          transition-duration: 1s;
-          overflow: hidden;
-      }
+        .Btn {
+            width: 140px;
+            height: 40px;
+            border: none;
+            border-radius: 10px;
+            background: linear-gradient(to right, #77530a, #ffd277, #77530a, #77530a, #ffd277, #77530a);
+            background-size: 250%;
+            background-position: left;
+            color: #ffd277;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition-duration: 1s;
+            overflow: hidden;
+        }
 
-          .Btn::before {
-              position: absolute;
-              content: "Add To The Cart";
-              color: #ffd277;
-              display: flex;
-              align-items: center;
-              justify-content: center;
-              width: 97%;
-              height: 90%;
-              border-radius: 8px;
-              transition-duration: 1s;
-              background-color: rgba(0, 0, 0, 0.842);
-              background-size: 200%;
-          }
+            .Btn::before {
+                position: absolute;
+                content: "Add To The Cart";
+                color: #ffd277;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 97%;
+                height: 90%;
+                border-radius: 8px;
+                transition-duration: 1s;
+                background-color: rgba(0, 0, 0, 0.842);
+                background-size: 200%;
+            }
 
-          .Btn:hover {
-              background-position: right;
-              transition-duration: 1s;
-          }
+            .Btn:hover {
+                background-position: right;
+                transition-duration: 1s;
+            }
 
-              .Btn:hover::before {
-                  background-position: right;
-                  transition-duration: 1s;
-              }
+                .Btn:hover::before {
+                    background-position: right;
+                    transition-duration: 1s;
+                }
 
-          .Btn:active {
-              transform: scale(0.95);
-          }
+            .Btn:active {
+                transform: scale(0.95);
+            }
 
-      .buy-now {
-          background-color: #000000;
-          border: none;
-          color: white;
-          padding: 8px 20px;
-          text-align: center;
-          text-decoration: none;
-          display: inline-block;
-          font-size: 16px;
-          margin-top: 10px;
-          transition: background-color 0.3s;
-          border-radius: 10px;
-          cursor: pointer;
-      }
+        .buy-now {
+            background-color: #000000;
+            border: none;
+            color: white;
+            padding: 8px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin-top: 10px;
+            transition: background-color 0.3s;
+            border-radius: 10px;
+            cursor: pointer;
+        }
 
-          .buy-now:hover {
-              background-color: #3b3838;
-          }
+            .buy-now:hover {
+                background-color: #3b3838;
+            }
 
-          .buy-now a {
-              color: #ffd277;
-              text-decoration: none;
-          }
+            .buy-now a {
+                color: #ffd277;
+                text-decoration: none;
+            }
 
-      .search-container2 {
-          position: absolute;
-          top: 20px; /* Adjust this value to your desired distance from the top */
-          right: 20px; /* Adjust this value to your desired distance from the right */
-          display: flex;
-          flex-direction: column; /* Align items vertically */
-          align-items: flex-end; /* Align items to the right */
-          z-index: 1000; /* Ensure the search button appears on top of other elements */
-      }
+        .search-container2 {
+            position: absolute;
+            top: 20px; /* Adjust this value to your desired distance from the top */
+            right: 20px; /* Adjust this value to your desired distance from the right */
+            display: flex;
+            flex-direction: column; /* Align items vertically */
+            align-items: flex-end; /* Align items to the right */
+            z-index: 1000; /* Ensure the search button appears on top of other elements */
+        }
 
-      .search-by-category {
-          position: absolute;
-          top: 20px; /* Adjust this value to your desired distance from the top */
-          right: 20px; /* Adjust this value to your desired distance from the right */
-          display: flex;
-          z-index: 1000;
-          margin-bottom: 1px; /* Add some space below the search by category section */
-      }
+        .search-by-category {
+            position: absolute;
+            top: 20px; /* Adjust this value to your desired distance from the top */
+            right: 20px; /* Adjust this value to your desired distance from the right */
+            display: flex;
+            z-index: 1000;
+            margin-bottom: 1px; /* Add some space below the search by category section */
+        }
 
-          /* Style for the select dropdown */
-          .search-by-category select {
-              padding: 2px 1px;
-              border: none;
-              border-radius: 5px;
-              background: #fff;
-              color: #333;
-              font-size: 13px;
-              margin-right: 2px;
-          }
+            /* Style for the select dropdown */
+            .search-by-category select {
+                padding: 2px 1px;
+                border: none;
+                border-radius: 5px;
+                background: #fff;
+                color: #333;
+                font-size: 13px;
+                margin-right: 2px;
+            }
 
-          /* Style for the search button */
-          .search-by-category button {
-              border: none;
-              background: linear-gradient(to right, rgba(76, 175, 80, 0.5), rgba(46, 139, 87, 0.5)); /* Adjust the opacity of the colors here */
-              color: #ffd277;
-              padding: 5px 5px;
-              border-radius: 5px;
-              cursor: pointer;
-              transition: background 0.3s ease;
-          }
+            /* Style for the search button */
+            .search-by-category button {
+                border: none;
+                background: linear-gradient(to right, rgba(76, 175, 80, 0.5), rgba(46, 139, 87, 0.5)); /* Adjust the opacity of the colors here */
+                color: #ffd277;
+                padding: 5px 5px;
+                border-radius: 5px;
+                cursor: pointer;
+                transition: background 0.3s ease;
+            }
 
-              .search-by-category button:hover {
-                  background: linear-gradient(to right, rgba(76, 175, 80, 0.7), rgba(46, 139, 87, 0.7)); /* Adjust the opacity of the colors here */
-              }
+                .search-by-category button:hover {
+                    background: linear-gradient(to right, rgba(76, 175, 80, 0.7), rgba(46, 139, 87, 0.7)); /* Adjust the opacity of the colors here */
+                }
 
-      .search-container5 {
-          position: absolute;
-          top: 20px;
-          left: 20px; /* Adjust this value to your desired distance from the left */
-          display: flex;
-          align-items: center;
-          z-index: 1000;
-      }
+        .search-container5 {
+            position: absolute;
+            top: 20px;
+            left: 20px; /* Adjust this value to your desired distance from the left */
+            display: flex;
+            align-items: center;
+            z-index: 1000;
+        }
 
-      #min-price,
-      #max-price {
-          width: 100px;
-          padding: 8px;
-          border: 1px solid #ccc;
-          border-radius: 5px;
-          margin-right: 10px;
-          font-size: 16px;
-      }
+        #min-price,
+        #max-price {
+            width: 100px;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-right: 10px;
+            font-size: 16px;
+        }
 
-      .search-by-price-btn {
-          padding: 10px 20px;
-          background-color: rgba(0, 0, 0, 0.1);
-          color: #ffd277;
-          border: none;
-          border-radius: 5px;
-          cursor: pointer;
-          transition: background-color 0.3s;
-      }
+        .search-by-price-btn {
+            padding: 10px 20px;
+            background-color: rgba(0, 0, 0, 0.1);
+            color: #ffd277;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
 
-          .search-by-price-btn:hover {
-              background-color: #45a049;
-          }
+            .search-by-price-btn:hover {
+                background-color: #45a049;
+            }
 
-          .search-by-price-btn:active {
-              transform: scale(0.95);
-          }
+            .search-by-price-btn:active {
+                transform: scale(0.95);
+            }
 
-      .search-container {
-          position: absolute;
-          top: 80px; /* Adjust this value to your desired distance from the top */
-          right: 25px; /* Adjust this value to your desired distance from the right */
-          display: flex;
-          z-index: 1000; /* Ensure the search button appears on top of other elements */
-      }
+        .search-container {
+            position: absolute;
+            top: 80px; /* Adjust this value to your desired distance from the top */
+            right: 25px; /* Adjust this value to your desired distance from the right */
+            display: flex;
+            z-index: 1000; /* Ensure the search button appears on top of other elements */
+        }
 
-      .search-container2 {
-          position: absolute;
-          top: 20px; /* Adjust this value to your desired distance from the top */
-          right: 20px; /* Adjust this value to your desired distance from the right */
-          display: flex;
-          z-index: 1000; /* Ensure the search button appears on top of other elements */
-      }
-      /* Search button style */
-      #search-button {
-          border: none;
-          background: none;
-          cursor: pointer;
-          outline: none;
-          color: #ffd277;
-          font-size: 12px;
-          padding: 8px;
-      }
+        .search-container2 {
+            position: absolute;
+            top: 20px; /* Adjust this value to your desired distance from the top */
+            right: 20px; /* Adjust this value to your desired distance from the right */
+            display: flex;
+            z-index: 1000; /* Ensure the search button appears on top of other elements */
+        }
+        /* Search button style */
+        #search-button {
+            border: none;
+            background: none;
+            cursor: pointer;
+            outline: none;
+            color: #ffd277;
+            font-size: 12px;
+            padding: 8px;
+        }
 
-          #search-button:hover {
-              color: #66afe9; /* Adjust hover color if needed */
-          }
+            #search-button:hover {
+                color: #66afe9; /* Adjust hover color if needed */
+            }
 
-      .cssbuttons-io {
-          position: relative;
-          font-family: inherit;
-          font-weight: 400;
-          font-size: 13px;
-          border-radius: 0.8em;
-          cursor: pointer;
-          border: none;
-          background: linear-gradient(to right, #00bf63, #5ce1e6);
-          color: ghostwhite;
-          overflow: hidden;
-      }
+        .cssbuttons-io {
+            position: relative;
+            font-family: inherit;
+            font-weight: 400;
+            font-size: 13px;
+            border-radius: 0.8em;
+            cursor: pointer;
+            border: none;
+            background: linear-gradient(to right, #00bf63, #5ce1e6);
+            color: ghostwhite;
+            overflow: hidden;
+        }
 
-          .cssbuttons-io svg {
-              width: 1.2em;
-              height: 1.2em;
-              margin-left: 0.7em;
-              stroke-width: 2px;
-          }
+            .cssbuttons-io svg {
+                width: 1.2em;
+                height: 1.2em;
+                margin-left: 0.7em;
+                stroke-width: 2px;
+            }
 
-          .cssbuttons-io span {
-              position: relative;
-              z-index: 10;
-              transition: color 0.4s;
-              display: inline-flex;
-              align-items: center;
-              padding: 0.8em 0.9em 0.8em 1.02em;
-          }
+            .cssbuttons-io span {
+                position: relative;
+                z-index: 10;
+                transition: color 0.4s;
+                display: inline-flex;
+                align-items: center;
+                padding: 0.8em 0.9em 0.8em 1.02em;
+            }
 
-          .cssbuttons-io::before,
-          .cssbuttons-io::after {
-              position: absolute;
-              top: 0;
-              left: 0;
-              width: 100%;
-              height: 100%;
-              z-index: 0;
-          }
+            .cssbuttons-io::before,
+            .cssbuttons-io::after {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                z-index: 0;
+            }
 
-          .cssbuttons-io::before {
-              content: "";
-              background: #000;
-              width: 120%;
-              left: -10%;
-              transform: skew(30deg);
-              transition: transform 0.4s cubic-bezier(0.3, 1, 0.8, 1);
-          }
+            .cssbuttons-io::before {
+                content: "";
+                background: #000;
+                width: 120%;
+                left: -10%;
+                transform: skew(30deg);
+                transition: transform 0.4s cubic-bezier(0.3, 1, 0.8, 1);
+            }
 
-          .cssbuttons-io:hover::before {
-              transform: translate3d(100%, 0, 0);
-          }
+            .cssbuttons-io:hover::before {
+                transform: translate3d(100%, 0, 0);
+            }
 
-          .cssbuttons-io:active {
-              transform: scale(0.95);
-          }
+            .cssbuttons-io:active {
+                transform: scale(0.95);
+            }
 
-      .modal {
-          display: none;
-          position: fixed;
-          z-index: 1000;
-          left: 0;
-          top: 0;
-          width: 100%;
-          height: 100%;
-          overflow: auto;
-          background-color: rgba(0, 0, 0, 0.5);
-      }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
 
-      .modal-content {
-          background-color: #fefefe;
-          margin: 15% auto;
-          padding: 20px;
-          border: 1px solid #888;
-          border-radius: 10px;
-          width: 80%;
-          max-width: 600px;
-          position: relative;
-      }
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            border-radius: 10px;
+            width: 80%;
+            max-width: 600px;
+            position: relative;
+        }
 
-      .close {
-          color: #aaa;
-          float: right;
-          font-size: 28px;
-          font-weight: bold;
-      }
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
 
-          .close:hover,
-          .close:focus {
-              color: black;
-              text-decoration: none;
-              cursor: pointer;
-          }
+            .close:hover,
+            .close:focus {
+                color: black;
+                text-decoration: none;
+                cursor: pointer;
+            }
 
-      #basket-contents {
-          max-height: 300px;
-          overflow-y: auto;
-      }
+        #basket-contents {
+            max-height: 300px;
+            overflow-y: auto;
+        }
 
-      .basket-item {
-          border-bottom: 1px solid #ddd;
-          padding: 10px 0;
-      }
+        .basket-item {
+            border-bottom: 1px solid #ddd;
+            padding: 10px 0;
+        }
 
-          .basket-item:last-child {
-              border-bottom: none;
-          }
+            .basket-item:last-child {
+                border-bottom: none;
+            }
 
-      .remove-from-basket {
-          background-color: #d01323;
-          color: white;
-          border: none;
-          padding: 5px 10px;
-          border-radius: 5px;
-          cursor: pointer;
-      }
+        .remove-from-basket {
+            background-color: #d01323;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
 
-          .remove-from-basket:hover {
-              background-color: #d6303;
-          }
+            .remove-from-basket:hover {
+                background-color: #d6303;
+            }
 
-      .total-price {
-          font-weight: bold;
-          text-align: right;
-          margin-top: 10px;
-      }
+        .total-price {
+            font-weight: bold;
+            text-align: right;
+            margin-top: 10px;
+        }
 
-      .pay-button {
-          background-color: black;
-          color: white;
-          border: none;
-          padding: 10px 20px;
-          border-radius: 5px;
-          cursor: pointer;
-          margin-top: 20px;
-      }
+        .pay-button {
+            background-color: black;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
 
-          .pay-button:hover {
-              background-color: black;
-          }
+            .pay-button:hover {
+                background-color: black;
+            }
 
-      .buy-now {
-          background-color: #000000;
-          border: none;
-          color: white;
-          padding: 10px 20px;
-          text-align: center;
-          text-decoration: none;
-          display: inline-block;
-          font-size: 16px;
-          margin-top: 10px;
-          border-radius: 20px;
-          transition: background-color 0.3s;
-          cursor: pointer;
-          box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-      }
+        .buy-now {
+            background-color: #000000;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin-top: 10px;
+            border-radius: 20px;
+            transition: background-color 0.3s;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
 
-          .buy-now:hover {
-              background-color: rgba(0, 0, 0, 0.1);
-          }
+            .buy-now:hover {
+                background-color: rgba(0, 0, 0, 0.1);
+            }
 
-          .buy-now:active {
-              transform: translateY(1px);
-              box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-          }
-      #show-best-seller {
-          position: fixed;
-          top: 80px;
-          left: 20px;
-          z-index: 1001;
-          background: linear-gradient(to right, #ff4500, #ff8c00);
-          color: #ffd277;
-          /*#ffd277*/
-      }
-  </style>
+            .buy-now:active {
+                transform: translateY(1px);
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            }
+
+        #show-best-seller {
+            position: fixed;
+            top: 80px;
+            left: 20px;
+            z-index: 1001;
+            background: linear-gradient(to right, #ff4500, #ff8c00);
+            color: #ffd277;
+            /*#ffd277*/
+        }
+    </style>
 </head>
 <body>
     <div class="search-container">

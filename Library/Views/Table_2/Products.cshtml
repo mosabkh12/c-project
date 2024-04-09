@@ -1,4 +1,8 @@
 ﻿@model IEnumerable<Library.Models.Book>
+
+@{
+    ViewBag.Title = "Library";
+}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -447,6 +451,7 @@
                 transform: translateY(1px);
                 box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
             }
+
         #show-best-seller {
             position: fixed;
             top: 80px;
@@ -583,7 +588,7 @@
     </div>
 
     @*<button onclick="sendValueToServer()">Send Value to Server</button>*@
-<script>
+    <script>
         var basket = [];
         var basketContents;
         function sendValueToServer() {
@@ -596,7 +601,7 @@
 
     }
     function sendValueToServer1(neme) {
-        
+
 
         localStorage.setItem('name', neme);
         localStorage.setItem('quantity', 1);
@@ -821,7 +826,7 @@
         window.location.href = '@Url.Action("payment", new { bookName = "__bookName__", quantity = "__quantity__" })'.replace('__bookName__', bookName).replace('__quantity__', quantity);
     }
 
-</script>
+    </script>
 
 </body>
 </html>

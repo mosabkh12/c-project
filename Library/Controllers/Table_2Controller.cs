@@ -213,8 +213,8 @@ namespace OnlineShop.Controllers
                             {
                                 s.messagee.Add(entity);
                                 s.SaveChanges();
-
-                                return RedirectToAction("payment");
+                            TempData["SuccessMessage"] = "Payment successful!";
+                            return RedirectToAction("payment");
                             }
 
 
