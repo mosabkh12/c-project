@@ -108,11 +108,15 @@
                                 @*<label for="date">Date:</label>*@
                                 @Html.HiddenFor(model => model.date, new { htmlAttributes = new { @class = "form-control" } })
                             </div>
+                            <div class="form-group">
+                                @*<label for="date">Date:</label>*@
+                                @Html.HiddenFor(model => model.age, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
                             @*<div class="form-group">
-                                    <label for="image">Current Image:</label>
-                                    <img src="@Model.image" alt="Book Image" class="img-fluid">
-                                    @Html.HiddenFor(model => model.image, new { htmlAttributes = new { @class = "form-control" } })
-                                </div>*@
+                <label for="image">Current Image:</label>
+                <img src="@Model.image" alt="Book Image" class="img-fluid">
+                @Html.HiddenFor(model => model.image, new { htmlAttributes = new { @class = "form-control" } })
+            </div>*@
 
                             <div class="form-group">
                                 @*<label for="onsale">On Sale:</label>*@

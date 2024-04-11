@@ -4,6 +4,12 @@
     ViewBag.Title = "Library";
 }
 
+@if (TempData["SuccessMessage1"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["SuccessMessage1"]
+    </div>
+}
 <style>
     body {
         font-family: Arial, sans-serif;
@@ -78,38 +84,38 @@
 <h2>Order New Book</h2>
 <div class="nav-links">
     <a href="Products">Library</a>
-    </div>
-    @using (Html.BeginForm())
-    {
-        @Html.AntiForgeryToken()
+</div>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
 
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.bookreq, htmlAttributes: new { @class = "control-label" })
-                        @Html.EditorFor(model => model.bookreq, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.bookreq, "", new { @class = "text-danger" })
-                    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.bookreq, htmlAttributes: new { @class = "control-label" })
+                    @Html.EditorFor(model => model.bookreq, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.bookreq, "", new { @class = "text-danger" })
+                </div>
 
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.amountreq, htmlAttributes: new { @class = "control-label" })
-                        @Html.EditorFor(model => model.amountreq, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.amountreq, "", new { @class = "text-danger" })
-                    </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.amountreq, htmlAttributes: new { @class = "control-label" })
+                    @Html.EditorFor(model => model.amountreq, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.amountreq, "", new { @class = "text-danger" })
+                </div>
 
-                    <div class="form-group">
-                        <button type="submit" class="btn btn-primary">Request</button>
-                        <div class="success-message">@ViewBag.SuccessMessage</div>
-                        <div class="alert-danger">@ViewBag.DuplicateMessage</div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary">Request</button>
+                    <div class="success-message">@ViewBag.SuccessMessage</div>
+                    <div class="alert-danger">@ViewBag.DuplicateMessage</div>
 
-                        @Html.ActionLink("Cancel", "Products", null, new { @class = "btn btn-secondary" })
-                    </div>
+                    @Html.ActionLink("Cancel", "Products", null, new { @class = "btn btn-secondary" })
                 </div>
             </div>
         </div>
-    }
+    </div>
+}
 
-    @section Scripts {
-        @Scripts.Render("~/bundles/jqueryval")
-    }
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -9,6 +9,7 @@ namespace Library.Models
     public partial class request
     {
         [Key]
+        [Required(ErrorMessage = "Book Name is required")]
         public string bookreq { get; set; }
         public int? amountreq { get; set; }
         public string message { get; set; }

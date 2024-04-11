@@ -24,7 +24,7 @@ namespace Library.Models
         public string cardnum { get; set; }
        
         [Required(ErrorMessage = "Please enter the expiration date")]
-        [RegularExpression(@"^(0[1-9]|1[0-2])\/?([0-9]{2})$", ErrorMessage = "Invalid expiration date. Please enter in MM/YY format")]
+        [RegularExpression(@"^(0[1-9]|1[0-2])\/?([2-9]\d)$", ErrorMessage = "Invalid expiration date. Please enter in MM/YY format")]
         public string expdate { get; set; }
      
 

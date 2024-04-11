@@ -34,7 +34,7 @@ namespace OnlineShop.Controllers
             using (Aes aesAlg = Aes.Create())
             {
                 aesAlg.Key = key;
-                aesAlg.IV = new byte[16]; // Use a random IV for each encryption
+                aesAlg.IV = new byte[16]; 
 
                 ICryptoTransform encryptor = aesAlg.CreateEncryptor(aesAlg.Key, aesAlg.IV);
 
@@ -57,7 +57,7 @@ namespace OnlineShop.Controllers
         }
         private byte[] GenerateRandomKey()
         {
-            byte[] key = new byte[32]; // 32 bytes = 256 bits
+            byte[] key = new byte[32]; 
 
             using (RNGCryptoServiceProvider rng = new RNGCryptoServiceProvider())
             {
@@ -265,7 +265,7 @@ namespace OnlineShop.Controllers
             }
          
             d.request.Add(table);
-            TempData["SuccessMessage"] = "request sent";
+            TempData["SuccessMessage1"] = "request sent";
             d.SaveChanges();
             return RedirectToAction("request");
         
